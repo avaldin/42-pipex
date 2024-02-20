@@ -5,56 +5,60 @@
 #                                                     +:+ +:+         +:+      #
 #    By: avaldin <avaldin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/27 15:11:14 by avaldin           #+#    #+#              #
-#    Updated: 2024/01/31 09:56:18 by avaldin          ###   ########.fr        #
+#    Created: 2023/11/07 15:30:58 by avaldin           #+#    #+#              #
+#    Updated: 2024/02/16 18:06:14 by avaldin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+		##		COMPILATION			##
 
-SRCS    =   pipex.c\
-			command.c\
-			process.c\
-			security.c\
+CC			=	cc
+FLAGS		=	-Wall -Wextra -Werror -g3 -O3
 
+		##		EXECUTABLE			##
 
+NAME		=	pipex
 
-OBJS    =    $(SRCS:.c=.o)
+		##		PATH				##
 
+SRC_PATH	=	src
+OBJ_PATH	=	obj
 
-HEADER    =    pipex.h
+		##		SOURCES_FILES		##
 
-NAME    =    pipex
+SOURCES		=	src/command.c\
+				src/pipex.c\
+				src/process.c\
+				src/security.c\
+				src/libft/ft_putstr_fd.c\
+				src/libft/ft_split.c\
+				src/libft/ft_strdup.c\
+				src/libft/ft_strjoin.c\
+				src/libft/ft_strncmp.c\
+				src/libft/ft_substr.c\
+				src/libft/ft_strlen.c\
 
-CC        =    cc
+HEADER		=	header/pipex.h\
 
-FLAGS    =    -Wall -Wextra -Werror -g3
+		##		OBJECTS				##
 
-# ---- Libs variables ---- #
+OBJS		=	$(SOURCES:.c=.o)
 
-LIBFT			=   libft/libft.a
-
-FRAMEWORKS		=	-Llibft -lft
-
-$(NAME)    :    $(OBJS) $(HEADER) $(LIBFT)
-	$(CC) $(FLAGS) -I $(HEADER) $(OBJS) $(FRAMEWORKS) -o $(NAME)
-
-$(LIBFT) :
-			make -C libft
-
-all			:
-				make -C libft/
-				make $(NAME)
-
-%.o        :    %.c $(HEADER)
-	$(CC) $(FLAGS) -I $(HEADER) -c $< -o $@
+		##		RULES				##
 
 
-clean    :
+all			:	$(NAME)
+%.o			:	%.c $(HEADER) Makefile
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(NAME)		:	$(OBJS)
+	$(CC) $(OBJS)  -o $(NAME)
+
+clean		:
 	rm -f $(OBJS)
 
-fclean    :    clean
+fclean		:	clean
 	rm -f $(NAME)
 
 re        :    fclean all
-
-.PHONY    :    all clean fclean re bonus
+.PHONY    :    all clean fclean re
