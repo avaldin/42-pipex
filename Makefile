@@ -6,14 +6,14 @@
 #    By: avaldin <avaldin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 15:30:58 by avaldin           #+#    #+#              #
-#    Updated: 2024/02/16 18:06:14 by avaldin          ###   ########.fr        #
+#    Updated: 2024/02/21 09:04:06 by avaldin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 		##		COMPILATION			##
 
 CC			=	cc
-FLAGS		=	-Wall -Wextra -Werror -g3 -O3
+FLAGS		=	-Wall -Wextra -Werror -g3
 
 		##		EXECUTABLE			##
 

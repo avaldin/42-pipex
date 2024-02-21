@@ -6,7 +6,7 @@
 /*   By: avaldin <avaldin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:55:41 by avaldin           #+#    #+#             */
-/*   Updated: 2024/02/16 17:26:35 by avaldin          ###   ########.fr       */
+/*   Updated: 2024/02/21 09:58:23 by avaldin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,8 @@ char	*find_the_path(char *command, char **envp);
 char	*find_env_path(char **envp);
 char	**get_the_command(char *command, char **env_path);
 void	process(char **argv, t_pipex *data, char **envp);
-void	close_pid(pid_t child_pid, int fd[2]);
-void	close_n_wait(t_pipex *data);
-void	open_n_pipe(t_pipex *data, char **argv);
 void	fail(t_pipex *data, char *name, int exit_num);
-void	super_free(t_pipex *data);
+void	super_free(t_pipex *data, int k);
 
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

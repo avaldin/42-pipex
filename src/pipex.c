@@ -6,7 +6,7 @@
 /*   By: avaldin <avaldin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:08:01 by avaldin           #+#    #+#             */
-/*   Updated: 2024/02/16 17:07:13 by avaldin          ###   ########.fr       */
+/*   Updated: 2024/02/21 11:10:24 by avaldin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_cmd(t_pipex *data)
 	}
 }
 
-void	super_free(t_pipex *data)
+void	super_free(t_pipex *data, int k)
 {
 	int	i;
 
@@ -56,6 +56,11 @@ void	super_free(t_pipex *data)
 		close(data->pipe_fd[0]);
 	if (data->pipe_fd[1] != -1)
 		close(data->pipe_fd[1]);
+	if (k != -1)
+	{
+		close(0);
+		close(1);
+	}
 }
 
 void	data_set(t_pipex *data)
@@ -87,10 +92,10 @@ int	main(int argc, char **argv, char **envp)
 	data.cmd[1] = get_the_command(argv[3], data.env_path);
 	if (!data.cmd[0] || !data.cmd[1])
 	{
-		super_free(&data);
+		super_free(&data, -1);
 		return (3);
 	}
 	process(argv, &data, envp);
-	super_free(&data);
+	super_free(&data, -1);
 	return (0);
 }
