@@ -29,4 +29,3 @@ void	fail(t_pipex *data, char *name, int exit_num)
 		exit(exit_num);
 	}
 }
-
